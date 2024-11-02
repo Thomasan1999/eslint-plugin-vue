@@ -62,6 +62,37 @@ tester.run('prefer-use-template-ref', rule, {
         }
       </script>
       `
+    },
+    {
+      filename: 'non-template-ref.vue',
+      code: `
+      <template>
+          <div>
+            <ul>
+              <li v-for="food in foods" :key="food">{{food}}</li>
+            </ul>
+          </div>
+      </template>
+      <script setup>
+        import { ref } from 'vue';
+        const foods = ref(['Spaghetti', 'Pizza', 'Cake']);
+      </script>
+      `
+    },
+    {
+      filename: 'counter.js',
+      code: `
+      import { ref } from 'vue';
+      const counter = ref(0);
+      const names = ref(new Set());
+      function incrementCounter() {
+        counter.value++;
+        return counter.value;
+      }
+      function storeName(name) {
+        names.value.add(name)
+      }
+      `
     }
   ],
   invalid: [
